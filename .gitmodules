@@ -1,0 +1,3 @@
+[submodule "submodules/dotnet-task-management"]
+	path = submodules/dotnet-task-management
+	url = ../dotnet-task-management
