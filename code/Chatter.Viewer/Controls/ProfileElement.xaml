@@ -1,0 +1,46 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:local="clr-namespace:Chatter.Viewer.Controls"
+             xmlns:converters="clr-namespace:Chatter.Viewer.ValueConverters"
+             mc:Ignorable="d" d:DesignWidth="600" d:DesignHeight="64"
+             x:Class="Chatter.Viewer.Controls.ProfileElement">
+    <Grid>
+        <Grid ColumnDefinitions="Auto 12 *">
+            <Grid Margin="0,6" Grid.Column="0">
+                <local:ProfileImage Height="36" Width="36" DataContext="{Binding Path=ImagePath}" />
+                <Ellipse Fill="#FF3030" Height="8" Width="8" HorizontalAlignment="Right" VerticalAlignment="Top">
+                    <Ellipse.IsVisible>
+                        <Binding Path="UnreadCount">
+                            <Binding.Converter>
+                                <converters:IntegerToBooleanConverter />
+                            </Binding.Converter>
+                        </Binding>
+                    </Ellipse.IsVisible>
+                </Ellipse>
+            </Grid>
+            <Grid Grid.Column="2" VerticalAlignment="Center" RowDefinitions="* *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto 4 *">
+                    <TextBlock Grid.Column="0" Text="{Binding Path=Name}" />
+                    <TextBlock Grid.Column="2" Classes="Small Light">
+                        <TextBlock.Text>
+                            <MultiBinding>
+                                <MultiBinding.Bindings>
+                                    <Binding Path="OnlineStatus" />
+                                    <Binding Path="IPAddress" />
+                                </MultiBinding.Bindings>
+                                <MultiBinding.Converter>
+                                    <converters:NoticeMultiValueConverter />
+                                </MultiBinding.Converter>
+                            </MultiBinding>
+                        </TextBlock.Text>
+                    </TextBlock>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <TextBlock Text="{Binding Path=Text}" Classes="Small Light" />
+                </Grid>
+            </Grid>
+        </Grid>
+    </Grid>
+</UserControl>

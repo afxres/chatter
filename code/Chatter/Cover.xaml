@@ -1,0 +1,35 @@
+﻿<Window x:Class="Chatter.Cover"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:controls="clr-namespace:Chatter.Controls"
+        mc:Ignorable="d"
+        Title="Cover" Height="360" Width="320" WindowStartupLocation="CenterScreen" Style="{StaticResource FlattenWindowStyle}" ResizeMode="CanMinimize">
+    <Grid Button.Click="Button_Click" Background="{StaticResource Flatten.Secondary.Background}">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" Height="{StaticResource WindowCaptionHeight}" />
+        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="24" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="12" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <controls:ProfileImage Grid.Row="0" Height="128" Width="128" />
+            <TextBox Grid.Row="2" Width="240" MaxLength="24" Tag="Nick Name" Text="{Binding Path=Name}" />
+            <TextBox Grid.Row="4" Width="240" MaxLength="24" Tag="Status" Text="{Binding Path=Text}" />
+            <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Tag="image" Width="100" Content="New Image" Style="{DynamicResource FlattenButtonStyle}" />
+                <Control Focusable="False" Width="12" />
+                <Button Tag="go" Width="80" Content="Go!" Style="{DynamicResource FlattenButtonStyle}" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

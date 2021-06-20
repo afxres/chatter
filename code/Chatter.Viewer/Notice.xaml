@@ -1,0 +1,18 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        mc:Ignorable="d" d:DesignWidth="400" d:DesignHeight="160"
+        x:Class="Chatter.Viewer.Notice" Name="window" SizeToContent="WidthAndHeight" WindowStartupLocation="CenterOwner">
+    <Grid RowDefinitions="* Auto">
+        <Grid Grid.Row="0" RowDefinitions="Auto 8 * 12" Margin="14,0">
+            <TextBlock Grid.Row="0" Text="{Binding #window.Title}" FontSize="24" />
+            <TextBlock Grid.Row="2" Text="{Binding}" Classes="Content" />
+        </Grid>
+        <Grid Grid.Row="1" Background="LightGray">
+            <StackPanel Margin="14,12" HorizontalAlignment="Right">
+                <Button Name="button" Width="80" Content="OK" />
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>

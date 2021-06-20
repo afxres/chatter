@@ -1,0 +1,72 @@
+﻿<UserControl x:Class="Chatter.Controls.ProfileElement"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:controls="clr-namespace:Chatter.Controls"
+             mc:Ignorable="d"
+             d:DesignHeight="48" d:DesignWidth="240">
+    <UserControl.Style>
+        <Style TargetType="UserControl">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="UserControl">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto" />
+                                <ColumnDefinition Width="12" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Grid Grid.Column="0">
+                                <Grid Margin="0,6">
+                                    <controls:ProfileImage />
+                                    <Ellipse Fill="#FF3030" Height="8" Width="8" HorizontalAlignment="Right" VerticalAlignment="Top">
+                                        <Ellipse.Effect>
+                                            <DropShadowEffect Color="#FF3030" ShadowDepth="0" />
+                                        </Ellipse.Effect>
+                                        <Ellipse.Style>
+                                            <Style TargetType="Ellipse">
+                                                <Style.Triggers>
+                                                    <DataTrigger Binding="{Binding Path=UnreadCount}" Value="0">
+                                                        <Setter Property="Visibility" Value="Collapsed" />
+                                                    </DataTrigger>
+                                                </Style.Triggers>
+                                            </Style>
+                                        </Ellipse.Style>
+                                    </Ellipse>
+                                </Grid>
+                            </Grid>
+                            <Grid Grid.Column="2" VerticalAlignment="Center">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Grid Grid.Row="0">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto" />
+                                        <ColumnDefinition Width="4" />
+                                        <ColumnDefinition Width="*" />
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Text="{Binding Path=Name}" />
+                                    <TextBlock Name="address" Grid.Column="2" Text="{Binding Path=IPAddress, StringFormat={}[{0}]}"
+                                               FontSize="{StaticResource Flatten.Secondary.FontSize}"
+                                               Foreground="{StaticResource Flatten.Secondary.Foreground}">
+                                    </TextBlock>
+                                </Grid>
+                                <TextBlock Grid.Row="1" Text="{Binding Path=Text}"
+                                           FontSize="{StaticResource Flatten.Secondary.FontSize}"
+                                           Foreground="{StaticResource Flatten.Secondary.Foreground}">
+                                </TextBlock>
+                            </Grid>
+                        </Grid>
+                        <ControlTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=OnlineStatus}" Value="Offline">
+                                <Setter TargetName="address" Property="Text" Value="[Offline]" />
+                            </DataTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Style>
+</UserControl>

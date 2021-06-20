@@ -1,0 +1,87 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:Chatter.Converters"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib">
+    <sys:String x:Key="MessageTimeFormat">HH:mm:ss</sys:String>
+    <converters:MessageStatusConverter x:Key="MessageStatusConverter" />
+
+    <ControlTemplate x:Key="MessageListBoxItemTemplate" TargetType="ListBoxItem">
+        <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollContentPresenter}, Path=ActualWidth}">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Name="LeftBlank" Width="Auto" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Name="RightBlank" Width="Auto" />
+            </Grid.ColumnDefinitions>
+            <Grid x:Name="MainGrid" Grid.Column="1" Margin="8,4" MinWidth="200" SnapsToDevicePixels="True">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="Auto" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <Grid Grid.Row="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="4" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0"
+                               Text="{Binding Path=DateTime, StringFormat={StaticResource MessageTimeFormat}}"
+                               Style="{StaticResource MessageDateTimeStyle}">
+                    </TextBlock>
+                    <TextBlock Grid.Column="2"
+                               Text="{Binding Path=Status, Converter={StaticResource MessageStatusConverter}}"
+                               Style="{StaticResource MessageStatusStyle}">
+                    </TextBlock>
+                </Grid>
+                <UserControl Margin="0,4" Name="control" Grid.Row="1" />
+            </Grid>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <DataTrigger Binding="{Binding Path=Reference}" Value="Local">
+                <Setter TargetName="MainGrid" Property="HorizontalAlignment" Value="Right" />
+                <Setter TargetName="LeftBlank" Property="Width" Value="48" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Reference}" Value="Remote">
+                <Setter TargetName="MainGrid" Property="HorizontalAlignment" Value="Left" />
+                <Setter TargetName="RightBlank" Property="Width" Value="48" />
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Path}" Value="message.text">
+                <Setter TargetName="control" Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="UserControl">
+                            <Border Background="LightBlue">
+                                <TextBox Text="{Binding Path=Object, Mode=OneTime}" Style="{StaticResource FlattenReadOnlyTextBoxStyle}" />
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+            <DataTrigger Binding="{Binding Path=Path}" Value="message.image-hash">
+                <Setter TargetName="control" Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="UserControl">
+                            <Image MaxHeight="512" MaxWidth="512"
+                                   RenderOptions.BitmapScalingMode="HighQuality"
+                                   Source="{Binding Path=Object}">
+                                <Image.Effect>
+                                    <DropShadowEffect BlurRadius="8" ShadowDepth="0" Opacity="0.5" />
+                                </Image.Effect>
+                            </Image>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </DataTrigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+
+    <Style x:Key="MessageListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="Padding" Value="4,1" />
+        <Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="VerticalContentAlignment" Value="{Binding VerticalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="1" />
+        <Setter Property="FocusVisualStyle" Value="{StaticResource Flatten.Generic.FocusVisual}" />
+        <Setter Property="Template" Value="{StaticResource MessageListBoxItemTemplate}" />
+    </Style>
+</ResourceDictionary>

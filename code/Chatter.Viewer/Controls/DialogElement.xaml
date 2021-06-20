@@ -1,0 +1,26 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="200"
+             x:Class="Chatter.Viewer.Controls.DialogElement">
+    <Grid Width="{Binding RelativeSource={RelativeSource Mode=FindAncestor, AncestorType=ScrollContentPresenter}, Path=Bounds.Width}">
+        <Grid ColumnDefinitions="Auto * Auto">
+            <Border Name="head" Grid.Column="0" />
+            <Grid Name="grid" Grid.Column="1" Margin="8,4" HorizontalAlignment="Center" MinWidth="200" RowDefinitions="Auto *">
+                <Grid Grid.Row="0" ColumnDefinitions="Auto 4 *">
+                    <TextBlock Grid.Column="0" Classes="Small">
+                        <TextBlock.Text>
+                            <Binding Path="DateTime" StringFormat="{}{0:HH\:mm\:ss}" />
+                        </TextBlock.Text>
+                    </TextBlock>
+                    <TextBlock Grid.Column="2" Text="{Binding Path=Status}" Classes="Small Light" />
+                </Grid>
+                <Grid Grid.Row="1" Margin="0,4">
+                    <Border Name="content" Background="LightBlue" />
+                </Grid>
+            </Grid>
+            <Border Name="tail" Grid.Column="2" />
+        </Grid>
+    </Grid>
+</UserControl>

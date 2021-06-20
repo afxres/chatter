@@ -1,0 +1,10 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0</TargetFrameworks>
+    <RootNamespace>Mikodev.Links.Data.Abstractions</RootNamespace>
+    <AssemblyName>Mikodev.Links.Data.Abstractions</AssemblyName>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+</Project>

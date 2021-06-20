@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <RootNamespace>Mikodev.Links.Data</RootNamespace>
+    <AssemblyName>Mikodev.Links.Data</AssemblyName>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Sqlite" Version="5.0.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Links.Data.Abstractions\Links.Data.Abstractions.csproj" />
+  </ItemGroup>
+
+</Project>

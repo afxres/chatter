@@ -1,0 +1,19 @@
+﻿<Window xmlns="https://github.com/avaloniaui"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Chatter.Viewer.Controls"
+        mc:Ignorable="d" d:DesignWidth="320" d:DesignHeight="360"
+        x:Class="Chatter.Viewer.Cover"
+        Width="320" Height="360">
+    <Grid HorizontalAlignment="Center" VerticalAlignment="Center" RowDefinitions="Auto 24 Auto 12 Auto 12 Auto">
+        <local:ProfileImage Height="128" Width="128" DataContext="{Binding Path=ImagePath}" />
+        <TextBox Grid.Row="2" Width="240" Text="{Binding Path=Name}" />
+        <TextBox Grid.Row="4" Width="240" Text="{Binding Path=Text}" />
+        <StackPanel Grid.Row="6" Orientation="Horizontal" HorizontalAlignment="Right">
+            <Button Tag="image" Width="100" Content="New Image" />
+            <Control Focusable="False" Width="12" />
+            <Button Tag="go" Width="80" Content="Go!" />
+        </StackPanel>
+    </Grid>
+</Window>

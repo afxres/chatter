@@ -1,0 +1,25 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.1</TargetFrameworks>
+    <RootNamespace>Mikodev.Links</RootNamespace>
+    <AssemblyName>Mikodev.Links</AssemblyName>
+    <LangVersion>9.0</LangVersion>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Mikodev.Binary" Version="5.2.7" />
+    <PackageReference Include="Mikodev.Optional" Version="1.2.0" />
+    <PackageReference Include="System.Collections.Immutable" Version="5.0.0" />
+    <PackageReference Include="System.Json" Version="4.7.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\submodules\dotnet-task-management\code\Tasks.Abstractions\Tasks.Abstractions.csproj" />
+    <ProjectReference Include="..\..\submodules\dotnet-task-management\code\Tasks.Implementations\Tasks.Implementations.fsproj" />
+    <ProjectReference Include="..\Links.Abstractions\Links.Abstractions.csproj" />
+    <ProjectReference Include="..\Links.Data.Abstractions\Links.Data.Abstractions.csproj" />
+    <ProjectReference Include="..\Links.Data\Links.Data.csproj" />
+  </ItemGroup>
+
+</Project>

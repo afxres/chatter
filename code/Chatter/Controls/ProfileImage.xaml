@@ -1,0 +1,32 @@
+﻿<UserControl x:Class="Chatter.Controls.ProfileImage"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:converters="clr-namespace:Chatter.Converters"
+             mc:Ignorable="d"
+             d:DesignHeight="256" d:DesignWidth="256"
+             Width="36" Height="36">
+    <UserControl.Resources>
+        <converters:NotNullOrEmptyConverter x:Key="NotNullOrEmptyConverter" />
+    </UserControl.Resources>
+    <Ellipse x:Name="ellipse" UseLayoutRounding="True" SnapsToDevicePixels="True">
+        <Ellipse.Effect>
+            <DropShadowEffect BlurRadius="4" ShadowDepth="0" Opacity="0.5" />
+        </Ellipse.Effect>
+        <Ellipse.Style>
+            <Style TargetType="Ellipse">
+                <Setter Property="Fill" Value="Gray" />
+                <Style.Triggers>
+                    <DataTrigger Binding="{Binding Path=ImagePath, Converter={StaticResource NotNullOrEmptyConverter}}" Value="True">
+                        <Setter Property="Fill">
+                            <Setter.Value>
+                                <ImageBrush ImageSource="{Binding Path=ImagePath}" Stretch="UniformToFill" RenderOptions.BitmapScalingMode="HighQuality" />
+                            </Setter.Value>
+                        </Setter>
+                    </DataTrigger>
+                </Style.Triggers>
+            </Style>
+        </Ellipse.Style>
+    </Ellipse>
+</UserControl>

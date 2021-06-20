@@ -1,0 +1,17 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             xmlns:converters="clr-namespace:Chatter.Viewer.ValueConverters"
+             mc:Ignorable="d" d:DesignWidth="256" d:DesignHeight="256"
+             x:Class="Chatter.Viewer.Controls.ProfileImage">
+    <Ellipse Name="ellipse" Stretch="UniformToFill">
+        <Ellipse.Fill>
+            <Binding>
+                <Binding.Converter>
+                    <converters:FilePathToSquareImageBrushConverter />
+                </Binding.Converter>
+            </Binding>
+        </Ellipse.Fill>
+    </Ellipse>
+</UserControl>
